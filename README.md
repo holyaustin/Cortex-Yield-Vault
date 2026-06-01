@@ -321,12 +321,15 @@ cortex-yield-vault/
 - [x] Deployed contract address
 - [x] Test coverage report
 
-### Deployed Addresses (Somnia Testnet)
+### 📋 Deployment Summary:
+======================
+Network: somniaTestnet
+Strategy Contract: 0x25d3DD9943D8EA225189f1895379087aA8f55dba
+Vault Contract: 0xbA35c6fc4ab802024854A3d399cE54cBBD272E77
+Owner: 0x2c3b2B2325610a6814f2f822D0bF4DAB8CF16e16
+Block: 398101887
 
-| Contract | Address |
-|:---------|:--------|
-| CortexVault | `0x...` |
-| Agent Platform | `0x037Bb9C718F3f7fe5eCBDB0b600D607b52706776` |
+🔗 Explorer URL for Vault: https://testnet-explorer.somnia.network/address/0xbA35c6fc4ab802024854A3d399cE54cBBD272E77
 
 ### Team
 

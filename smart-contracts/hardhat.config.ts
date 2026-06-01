@@ -12,7 +12,7 @@ dotenv.config();
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
 const SOMNIA_RPC_URL =
-  process.env.SOMNIA_RPC_URL || "https://dream-rpc.somnia.network";
+  process.env.SOMNIA_RPC_URL || "https://api.infra.testnet.somnia.network";
 const SOMNIA_API_KEY = process.env.SOMNIA_API_KEY || "";
 
 export default defineConfig({

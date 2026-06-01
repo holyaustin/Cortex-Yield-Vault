@@ -172,7 +172,7 @@ contract CortexYieldVault is Ownable, ReentrancyGuard {
         require(msg.sender == address(PLATFORM), "Only platform");
         require(status == ResponseStatus.Success && responses.length > 0, "Agent failed");
 
-        (string memory finishReason, , , , string[] memory callIds, bytes[] memory calls) =
+        (string memory finishReason, , , , , bytes[] memory calls) =
             abi.decode(responses[0].result, (string, string, string[], string[], string[], bytes[]));
 
         if (keccak256(bytes(finishReason)) == keccak256("tool_calls") && calls.length > 0) {

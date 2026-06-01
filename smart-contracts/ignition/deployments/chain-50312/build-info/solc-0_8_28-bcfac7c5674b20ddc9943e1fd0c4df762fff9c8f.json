@@ -1,0 +1,40 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-bcfac7c5674b20ddc9943e1fd0c4df762fff9c8f",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/strategies/SimpleYieldStrategy.sol": "project/contracts/strategies/SimpleYieldStrategy.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "optimizer": {
+        "enabled": true,
+        "runs": 200
+      },
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": [],
+      "viaIR": true
+    },
+    "sources": {
+      "project/contracts/strategies/SimpleYieldStrategy.sol": {
+        "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.28;\n\ncontract SimpleYieldStrategy {\n    uint256 public totalDeposited;\n    address public owner;\n\n    event Deposited(address indexed user, uint256 amount);\n    event Withdrawn(address indexed user, uint256 amount);\n\n    constructor() {\n        owner = msg.sender;\n    }\n\n    receive() external payable {}\n\n    function deposit() external payable {\n        require(msg.value > 0, \"Amount must be > 0\");\n        totalDeposited += msg.value;\n        emit Deposited(msg.sender, msg.value);\n    }\n\n    function depositAll() external payable {\n        if (msg.value > 0) {\n            totalDeposited += msg.value;\n            emit Deposited(msg.sender, msg.value);\n        }\n    }\n\n    function withdraw(uint256 amount) external {\n        require(amount <= totalDeposited, \"Insufficient balance\");\n        totalDeposited -= amount;\n        payable(msg.sender).transfer(amount);\n        emit Withdrawn(msg.sender, amount);\n    }\n\n    function withdrawAll() external {\n        uint256 amount = totalDeposited;\n        totalDeposited = 0;\n        payable(msg.sender).transfer(amount);\n        emit Withdrawn(msg.sender, amount);\n    }\n}"
+      }
+    }
+  }
+}

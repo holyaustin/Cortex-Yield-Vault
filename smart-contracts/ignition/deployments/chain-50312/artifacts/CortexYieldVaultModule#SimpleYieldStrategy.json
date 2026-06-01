@@ -1,0 +1,121 @@
+{
+  "_format": "hh3-artifact-1",
+  "contractName": "SimpleYieldStrategy",
+  "sourceName": "contracts/strategies/SimpleYieldStrategy.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Deposited",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Withdrawn",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "deposit",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "depositAll",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalDeposited",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "withdrawAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "bytecode": "0x60808060405234602757600180546001600160a01b031916331790556102c2908161002c8239f35b5f80fdfe608080604052600436101561001c575b50361561001a575f80fd5b005b5f3560e01c9081632e1a7d4d146101c357508063853828b6146101555780638da5cb5b1461012d578063d0e30db0146100d7578063de5f62681461008a5763ff50abdc1461006a575f61000f565b34610086575f3660031901126100865760205f54604051908152f35b5f80fd5b5f366003190112610086573461009c57005b6100a7345f5461027f565b5f556040513481527f2da466a7b24304f47e87fa2e1e5a81b9831ce54fec19055ce277ca2f39ba42c460203392a2005b5f3660031901126100865734156100f3576100a7345f5461027f565b60405162461bcd60e51b81526020600482015260126024820152710416d6f756e74206d757374206265203e20360741b6044820152606490fd5b34610086575f366003190112610086576001546040516001600160a01b039091168152602090f35b34610086575f366003190112610086575f545f8055805f81156101ba575b5f80809381933390f1156101af576040519081527f7084f5476618d8e60b11ef0d7d3f06914655adb8793e28ff7f018d4c76d505d560203392a2005b6040513d5f823e3d90fd5b506108fc610173565b34610086576020366003190112610086575f54600435918183116102465750818103908111610232575f55805f81156101ba575f80809381933390f1156101af576040519081527f7084f5476618d8e60b11ef0d7d3f06914655adb8793e28ff7f018d4c76d505d560203392a2005b634e487b7160e01b5f52601160045260245ffd5b62461bcd60e51b8152602060048201526014602482015273496e73756666696369656e742062616c616e636560601b6044820152606490fd5b919082018092116102325756fea264697066735822122030afd38774f36606427b84365780219a921fec5dde41d67bb39fdb38525c704964736f6c634300081c0033",
+  "deployedBytecode": "0x608080604052600436101561001c575b50361561001a575f80fd5b005b5f3560e01c9081632e1a7d4d146101c357508063853828b6146101555780638da5cb5b1461012d578063d0e30db0146100d7578063de5f62681461008a5763ff50abdc1461006a575f61000f565b34610086575f3660031901126100865760205f54604051908152f35b5f80fd5b5f366003190112610086573461009c57005b6100a7345f5461027f565b5f556040513481527f2da466a7b24304f47e87fa2e1e5a81b9831ce54fec19055ce277ca2f39ba42c460203392a2005b5f3660031901126100865734156100f3576100a7345f5461027f565b60405162461bcd60e51b81526020600482015260126024820152710416d6f756e74206d757374206265203e20360741b6044820152606490fd5b34610086575f366003190112610086576001546040516001600160a01b039091168152602090f35b34610086575f366003190112610086575f545f8055805f81156101ba575b5f80809381933390f1156101af576040519081527f7084f5476618d8e60b11ef0d7d3f06914655adb8793e28ff7f018d4c76d505d560203392a2005b6040513d5f823e3d90fd5b506108fc610173565b34610086576020366003190112610086575f54600435918183116102465750818103908111610232575f55805f81156101ba575f80809381933390f1156101af576040519081527f7084f5476618d8e60b11ef0d7d3f06914655adb8793e28ff7f018d4c76d505d560203392a2005b634e487b7160e01b5f52601160045260245ffd5b62461bcd60e51b8152602060048201526014602482015273496e73756666696369656e742062616c616e636560601b6044820152606490fd5b919082018092116102325756fea264697066735822122030afd38774f36606427b84365780219a921fec5dde41d67bb39fdb38525c704964736f6c634300081c0033",
+  "linkReferences": {},
+  "deployedLinkReferences": {},
+  "immutableReferences": {},
+  "inputSourceName": "project/contracts/strategies/SimpleYieldStrategy.sol",
+  "buildInfoId": "solc-0_8_28-bcfac7c5674b20ddc9943e1fd0c4df762fff9c8f"
+}
