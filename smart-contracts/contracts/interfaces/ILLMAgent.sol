@@ -1,20 +1,20 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity ^0.8.28;
 
 interface ILLMAgent {
     struct OnchainTool {
         string signature;
         string description;
     }
-    
+
     function inferNumber(
         string memory prompt,
         string memory system,
         int256 minValue,
         int256 maxValue,
         bool chainOfThought
-    ) external returns (int256 response);
-    
+    ) external returns (int256);
+
     function inferToolsChat(
         string[] memory roles,
         string[] memory messages,

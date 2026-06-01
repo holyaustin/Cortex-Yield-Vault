@@ -1,29 +1,10 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
-
-interface IAgentRequester {
-    function createRequest(
-        uint256 agentId,
-        address callbackAddress,
-        bytes4 callbackSelector,
-        bytes calldata payload
-    ) external payable returns (uint256 requestId);
-    
-    function getRequestDeposit() external view returns (uint256);
-    
-    function getRequest(uint256 requestId) external view returns (
-        uint256 id,
-        address requester,
-        address callbackAddress,
-        bytes4 callbackSelector,
-        address[] memory subcommittee,
-        uint256 remainingBudget,
-        uint256 perAgentBudget
-    );
-}
+pragma solidity ^0.8.28;
 
 enum ConsensusType { Majority, Threshold }
-enum ResponseStatus { None, Pending, Success, Failed, TimedOut }
+enum ResponseStatus {
+    None, Pending, Success, Failed, TimedOut
+}
 
 struct Response {
     address validator;
@@ -50,4 +31,15 @@ struct Request {
     ConsensusType consensusType;
     uint256 remainingBudget;
     uint256 perAgentBudget;
+}
+
+interface IAgentRequester {
+    function createRequest(
+        uint256 agentId,
+        address callbackAddress,
+        bytes4 callbackSelector,
+        bytes calldata payload
+    ) external payable returns (uint256 requestId);
+
+    function getRequestDeposit() external view returns (uint256);
 }

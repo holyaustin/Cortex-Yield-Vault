@@ -30,8 +30,6 @@
     "typescript": "~5.8.0"
   },
   "dependencies": {
-    "@somnia-chain/reactivity": "^0.1.10",
-    "@somnia-chain/reactivity-contracts": "^0.1.6",
     "dotenv": "^17.3.1",
     "viem": "^2.37.13"
   }
