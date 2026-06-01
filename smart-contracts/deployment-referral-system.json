@@ -1,0 +1,17 @@
+{
+  "network": "somniaTestnet",
+  "timestamp": "2026-03-19T12:28:22.998Z",
+  "deployer": "0x2c3b2B2325610a6814f2f822D0bF4DAB8CF16e16",
+  "contracts": {
+    "UserRegistry": "0x60f79962Ed084E6c41866f2E9C8c7482808064B3",
+    "ReferralBadge": "0x5dd3fec607Ea107aC7AF726fA09f69BBE06a344a",
+    "ReferralDynasty": "0xb7395bC4Bc6985Bb2465fBdd8C80A0888d143511"
+  },
+  "ownership": {
+    "badgeOwner": "0xb7395bC4Bc6985Bb2465fBdd8C80A0888d143511",
+    "dynastyOwner": "0x2c3b2B2325610a6814f2f822D0bF4DAB8CF16e16"
+  },
+  "trustedEmitter": "0x60f79962Ed084E6c41866f2E9C8c7482808064B3",
+  "userRegisteredTopic": "0x2138b9314634f9fdd5e49bee3eaf17ca557b6637524d0db759711c3bfcd3d850",
+  "subscriptionTx": "0x234fe26b22fca78a579f1249dd1614dac02d3f1d1720795e7f8f32ac5b4a31a2"
+}

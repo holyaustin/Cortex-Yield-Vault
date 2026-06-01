@@ -1,0 +1,21 @@
+# Node modules
+/smart-contracts/node_modules
+
+# Compilation output
+/smart-contracts/dist
+
+# pnpm deploy output
+/smart-contracts/bundle
+
+# Hardhat Build Artifacts
+/smart-contracts/artifacts
+/smart-contracts/.env
+
+# Hardhat compilation (v2) support directory
+/smart-contracts/cache
+
+# Typechain output
+/smart-contracts/types
+
+# Hardhat coverage reports
+/smart-contracts/coverage
