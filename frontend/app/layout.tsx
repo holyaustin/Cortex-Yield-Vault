@@ -5,6 +5,8 @@ import { Providers } from './providers';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { ThemeProvider } from './components/ThemeProvider';
+import NetworkSwitcher from './components/NetworkSwitcher';
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' });
@@ -14,10 +16,16 @@ export const metadata: Metadata = {
   description: 'Autonomous yield management powered by Somnia Agentic L1 infrastructure',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-white dark:bg-black text-gray-900 dark:text-gray-100 transition-colors duration-200`}
+      >
         <ThemeProvider>
           <Providers>
             <div className="min-h-screen flex flex-col">
@@ -27,6 +35,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </main>
               <Footer />
             </div>
+            <NetworkSwitcher />
+            <Toaster position="bottom-right" />
           </Providers>
         </ThemeProvider>
       </body>

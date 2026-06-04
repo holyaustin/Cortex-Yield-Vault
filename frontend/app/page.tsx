@@ -5,6 +5,7 @@ import DepositWithdraw from './components/DepositWithdraw';
 import AgentControls from './components/AgentControls';
 import TransactionToast from './components/TransactionToast';
 import { useAccount } from 'wagmi';
+import ContractDebug from './components/ContractDebug';
 
 export default function Home() {
   const { isConnected } = useAccount();
@@ -20,7 +21,7 @@ export default function Home() {
               Cortex Yield Vault
             </span>
           </h1>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-500 dark:text-gray-500 max-w-2xl mx-auto">
             Autonomous yield management powered by Somnia Agentic L1 infrastructure.
             AI-driven risk assessment and automatic rebalancing.
           </p>
@@ -63,6 +64,9 @@ export default function Home() {
             </ul>
           </div>
         </div>
+
+        
+        <ContractDebug />
       </div>
     </>
   );

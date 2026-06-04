@@ -1,4 +1,12 @@
-export const VAULT_ADDRESS = process.env.NEXT_PUBLIC_VAULT_ADDRESS as `0x${string}`;
+import { getAddress } from 'viem';
+
+// Contract Addresses (Somnia Testnet)
+export const PLATFORM_ADDRESS = '0x037Bb9C718F3f7fe5eCBDB0b600D607b52706776' as const;
+export const VAULT_ADDRESS = '0xbA35c6fc4ab802024854A3d399cE54cBBD272E77' as const;
+
+// Verify addresses are checksummed
+export const VAULT_ADDRESS_CHECKSUMMED = getAddress(VAULT_ADDRESS);
+export const PLATFORM_ADDRESS_CHECKSUMMED = getAddress(PLATFORM_ADDRESS);
 
 export const vaultABI = [
   {
@@ -69,6 +77,13 @@ export const vaultABI = [
     name: 'rebalanceTo',
     outputs: [],
     stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [],
+    name: 'getRequiredDeposit',
+    outputs: [{ name: '', type: 'uint256' }],
+    stateMutability: 'view',
     type: 'function',
   },
 ] as const;

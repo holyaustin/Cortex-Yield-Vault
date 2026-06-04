@@ -1,10 +1,14 @@
 @import "tailwindcss";
 
 @theme {
+  /* Tells Tailwind v4 to look for the .dark class on <html> for dark mode utilities */
+  --variant-dark: .dark &; 
+
+  /* Colors */
   --color-primary: #00ff88;
   --color-primary-dark: #00cc66;
   --color-secondary: #00ff88;
-  --color-background-light: #ffffff;
+  --color-background-light: #B8FFB8;
   --color-background-dark: #0a0a0a;
   --color-surface-light: #f5f5f5;
   --color-surface-dark: #1a1a1a;
@@ -12,36 +16,49 @@
   --color-border-dark: #2a2a2a;
 }
 
-@layer base {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-
-  body {
-    @apply bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 transition-colors duration-200;
-  }
+/* Base body styles adjusted for cleaner handling */
+body {
+  background-color: var(--color-background-light);
+  color: var(--color-gray-900);
+  transition-property: color, background-color;
+  transition-duration: 200ms;
 }
 
-@layer components {
-  .btn-primary {
-    @apply bg-primary text-black font-bold py-3 px-6 rounded-lg transition-all duration-200 hover:bg-primary-dark hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-
-  .btn-outline {
-    @apply border-2 border-primary text-primary font-bold py-3 px-6 rounded-lg transition-all duration-200 hover:bg-primary hover:text-black disabled:opacity-50;
-  }
-
-  .card {
-    @apply bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-lg border border-border-light dark:border-border-dark;
-  }
-
-  .input {
-    @apply w-full px-4 py-3 rounded-lg border border-border-light dark:border-border-dark bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-primary transition-all;
-  }
-
-  .glass-effect {
-    @apply backdrop-blur-sm bg-black/5 dark:bg-white/5;
-  }
+/* This will now trigger correctly via your toggle */
+.dark body {
+  background-color: var(--color-background-dark);
+  color: var(--color-gray-100);
 }
+
+/* Component Classes */
+.btn-primary {
+  @apply bg-primary text-black font-bold py-3 px-6 rounded-lg 
+         transition-all duration-200 
+         hover:bg-primary-dark hover:scale-105 
+         active:scale-95 
+         disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-outline {
+  @apply border-2 border-primary text-primary font-bold py-3 px-6 rounded-lg 
+         transition-all duration-200 
+         hover:bg-primary hover:text-black 
+         disabled:opacity-50;
+}
+
+.card {
+  @apply bg-surface-light dark:bg-surface-dark rounded-xl p-6 shadow-lg 
+         border border-border-light dark:border-border-dark;
+}
+
+.input {
+  @apply w-full px-4 py-3 rounded-lg border bg-background-light text-gray-900 
+         border-border-light dark:border-border-dark dark:bg-background-dark dark:text-gray-100 
+         focus:outline-hidden focus:ring-2 focus:ring-primary transition-all;
+}
+
+.glass-effect {
+  @apply backdrop-blur-sm bg-black/5 dark:bg-white/5;
+}
+
+
