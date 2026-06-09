@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 export default function DepositWithdraw() {
   const [depositAmount, setDepositAmount] = useState('');
   const [withdrawAmount, setWithdrawAmount] = useState('');
-  const { deposit, withdraw, isPending, isConnected } = useWeb3();
+  const { deposit, withdraw, isPending, isConnected, userBalance, refetchUserBalance, refetchTotalDeposited } = useWeb3();
 
   const handleDeposit = async () => {
     if (!depositAmount || parseFloat(depositAmount) <= 0) {
@@ -18,6 +18,11 @@ export default function DepositWithdraw() {
       await deposit(depositAmount);
       toast.success(`Deposited ${depositAmount} STT successfully!`);
       setDepositAmount('');
+      // Refetch balances after confirmation
+      setTimeout(() => {
+        refetchUserBalance();
+        refetchTotalDeposited();
+      }, 5000);
     } catch (error) {
       toast.error('Deposit failed. Check console for details.');
       console.error(error);
@@ -29,10 +34,19 @@ export default function DepositWithdraw() {
       toast.error('Please enter a valid amount');
       return;
     }
+    if (parseFloat(withdrawAmount) > parseFloat(userBalance)) {
+      toast.error(`Cannot withdraw more than your balance (${userBalance} STT)`);
+      return;
+    }
     try {
       await withdraw(withdrawAmount);
       toast.success(`Withdrawn ${withdrawAmount} STT successfully!`);
       setWithdrawAmount('');
+      // Refetch balances after confirmation
+      setTimeout(() => {
+        refetchUserBalance();
+        refetchTotalDeposited();
+      }, 5000);
     } catch (error) {
       toast.error('Withdrawal failed. Check console for details.');
       console.error(error);
@@ -51,6 +65,9 @@ export default function DepositWithdraw() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div className="card">
         <h3 className="text-xl font-bold mb-4">Deposit STT</h3>
+        <div className="mb-4 text-sm text-gray-500">
+          Balance: {parseFloat(userBalance).toFixed(4)} STT
+        </div>
         <div className="space-y-4">
           <input
             type="number"
@@ -68,6 +85,9 @@ export default function DepositWithdraw() {
 
       <div className="card">
         <h3 className="text-xl font-bold mb-4">Withdraw STT</h3>
+        <div className="mb-4 text-sm text-gray-500">
+          Available: {parseFloat(userBalance).toFixed(4)} STT
+        </div>
         <div className="space-y-4">
           <input
             type="number"

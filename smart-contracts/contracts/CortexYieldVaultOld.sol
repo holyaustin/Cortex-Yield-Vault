@@ -8,7 +8,7 @@ import "./interfaces/ILLMAgent.sol";
 import "./interfaces/IJSONApiAgent.sol";
 import "./interfaces/IStrategy.sol";
 
-contract CortexYieldVault is Ownable, ReentrancyGuard {
+contract CortexYieldVaultOld is Ownable, ReentrancyGuard {
     // ============ SOMNIA PLATFORM & AGENTS ============
     IAgentRequester public constant PLATFORM = IAgentRequester(0x037Bb9C718F3f7fe5eCBDB0b600D607b52706776);
 

@@ -2,10 +2,14 @@
   "name": "smart-contracts",
   "version": "1.0.0",
   "type": "module",
-    "scripts": {
+  "scripts": {
     "compile": "npx hardhat compile",
     "test": "npx hardhat test",
-    "deploy": "npx hardhat run scripts/deploy.js --network somniaTestnet",
+    "test:solidity": "npx hardhat test contracts/CortexYieldVault.t.sol",
+    "deploy": "npx hardhat run scripts/deploy.ts --network somniaTestnet",
+    "deploy:ignition": "npx hardhat ignition deploy ignition/modules/CortexYieldVault.ts --network somniaTestnet",
+    "verify": "npx hardhat run scripts/verify.ts --network somniaTestnet",
+    "verify:vault": "npx hardhat run scripts/verify-vault.ts --network somniaTestnet",
     "clean": "npx hardhat clean",
     "size": "npx hardhat size-contracts"
   },
@@ -16,7 +20,7 @@
     "@nomicfoundation/hardhat-network-helpers": "^3.0.4",
     "@nomicfoundation/hardhat-toolbox-mocha-ethers": "^3.0.3",
     "@nomicfoundation/hardhat-typechain": "^3.0.4",
-    "@nomicfoundation/hardhat-verify": "^3.0.12",
+    "@nomicfoundation/hardhat-verify": "^3.0.19",
     "@openzeppelin/contracts": "^5.6.1",
     "@types/chai": "^5.2.3",
     "@types/chai-as-promised": "^8.0.2",

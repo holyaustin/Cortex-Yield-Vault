@@ -8,6 +8,8 @@ import hardhatMocha from "@nomicfoundation/hardhat-mocha";
 import hardhatEthersChaiMatchers from "@nomicfoundation/hardhat-ethers-chai-matchers";
 import hardhatNetworkHelpers from "@nomicfoundation/hardhat-network-helpers";
 
+import hardhatVerify from "@nomicfoundation/hardhat-verify";
+
 dotenv.config();
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY || "";
@@ -17,6 +19,7 @@ const SOMNIA_API_KEY = process.env.SOMNIA_API_KEY || "";
 
 export default defineConfig({
   plugins: [
+    hardhatVerify,
     hardhatToolboxMochaEthersPlugin,
     hardhatEthers,
     hardhatTypechain,
@@ -72,7 +75,7 @@ export default defineConfig({
 
   verify: {
     etherscan: {
-      apiKey: SOMNIA_API_KEY,
+      apiKey: "empty",
     },
   },
 

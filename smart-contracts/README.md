@@ -7,12 +7,30 @@ To learn more about the Hardhat 3 Beta, please visit the [Getting Started guide]
 # 🚀 📋 Deployment Summary:
 ======================
 Network: somniaTestnet
-Strategy Contract: 0x25d3DD9943D8EA225189f1895379087aA8f55dba
-Vault Contract: 0xbA35c6fc4ab802024854A3d399cE54cBBD272E77
-Owner: 0x2c3b2B2325610a6814f2f822D0bF4DAB8CF16e16
-Block: 398101887
+Chain ID: 50312
+Block: 401535693
 
-🔗 Explorer URL for Vault: https://testnet-explorer.somnia.network/address/0xbA35c6fc4ab802024854A3d399cE54cBBD272E77
+📝 Contract Addresses:
+   SimpleYieldStrategy: 0x7f8937232BDc40aa8dc19Fc2B845AfF6C7cf0B4F
+   CortexYieldVault:    0xf3B11f845933DB462daf111337AbE7890305Ea51
+
+👤 Owner: 0x2c3b2B2325610a6814f2f822D0bF4DAB8CF16e16
+
+🤖 Somnia Agent Configuration:
+   Platform Contract (Testnet): 0x037Bb9C718F3f7fe5eCBDB0b600D607b52706776
+   LLM Agent ID:                12847293847561029384
+   JSON Agent ID:               13174292974160097713
+   Required Deposit:            0.24 STT
+   - MIN_DEPOSIT_RESERVE:       0.01 STT
+   - LLM_PER_AGENT_PRICE:       0.07 STT
+   - JSON_PER_AGENT_PRICE:      0.03 STT
+   - SUBCOMMITTEE_SIZE:         3
+
+🔗 Explorer URLs:
+   Strategy: https://shannon-explorer.somnia.network/address/0x7f8937232BDc40aa8dc19Fc2B845AfF6C7cf0B4F
+   Vault:    https://shannon-explorer.somnia.network/address/0xf3B11f845933DB462daf111337AbE7890305Ea51
+
+npx hardhat verify --network somniaTestnet 0x7f8937232BDc40aa8dc19Fc2B845AfF6C7cf0B4F
 
 ## Project Overview
 

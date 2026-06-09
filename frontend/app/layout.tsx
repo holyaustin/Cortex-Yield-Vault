@@ -36,7 +36,7 @@ export default function RootLayout({
               <Footer />
             </div>
             <NetworkSwitcher />
-            <Toaster position="bottom-right" />
+            <Toaster position="top-center" />
           </Providers>
         </ThemeProvider>
       </body>
