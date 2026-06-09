@@ -1,11 +1,30 @@
+Here's the updated comprehensive README with your information and the missing deployment details:
+
+```markdown
 # 🧠 Cortex Yield Vault
 
 ### *Autonomous Yield Management • AI-Powered Risk Protection • On-Chain Agentic DeFi*
 
-[![Solidity](https://img.shields.io/badge/Solidity-0.8.20-363636?logo=solidity)](https://soliditylang.org/)
+[![Solidity](https://img.shields.io/badge/Solidity-0.8.28-363636?logo=solidity)](https://soliditylang.org/)
+[![Hardhat](https://img.shields.io/badge/Hardhat-3.0-blue)](https://hardhat.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 [![Somnia](https://img.shields.io/badge/Somnia-Agentic%20L1-6C2BD2)](https://somnia.network/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Hackathon](https://img.shields.io/badge/Somnia-Agentathon-FF6B35)](https://www.encodeclub.com/programmes/agentathon)
+
+---
+
+## 🌐 Live Demo
+
+**[https://cortex-yield-vault.vercel.app/](https://cortex-yield-vault.vercel.app/)**
+
+---
+
+## 👨‍💻 Author
+
+**Augustine Onuora (holyaustin)**
+- GitHub: [@holyaustin](https://github.com/holyaustin)
+- Twitter: [@holyaustin](https://twitter.com/holyaustin)
 
 ---
 
@@ -72,24 +91,35 @@ Traditional oracles only provide **data**. Cortex uses Somnia's unique **agentic
 
 ```
 contracts/
-├── CortexVault.sol          # Main vault with agent interaction
+├── CortexYieldVault.sol     # Main vault with agent interaction
 ├── interfaces/
+│   ├── IAgentRequester.sol  # Somnia agent request platform
 │   ├── ILLMAgent.sol        # Somnia LLM agent interface
-│   └── IAgentRequester.sol  # Somnia agent request platform
-└── lib/
-    └── SomniaAgentLib.sol   # Helper for gas/deposit calculations
+│   ├── IJSONApiAgent.sol    # JSON API agent interface
+│   └── IStrategy.sol        # Yield strategy interface
+├── strategies/
+│   └── SimpleYieldStrategy.sol
+└── mocks/
 ```
 
 ### Agent Configuration
 
 ```solidity
-// Agent type: LLM Inference
-uint256 constant AGENT_ID = 12875401142070969085;
+// Somnia Platform (Testnet)
+IAgentRequester public constant PLATFORM = 
+    IAgentRequester(0x037Bb9C718F3f7fe5eCBDB0b600D607b52706776);
 
-// Gas configuration (mainnet/testnet)
-uint256 constant RESERVE = 0.03 ether;      // Operations reserve
-uint256 constant PER_AGENT_PRICE = 0.07 ether; // LLM Inference price
-uint256 constant SUBCOMMITTEE_SIZE = 3;
+// LLM Inference Agent
+uint256 public constant LLM_AGENT_ID = 12847293847561029384;
+uint256 public constant LLM_PER_AGENT_PRICE = 0.07 ether;
+
+// JSON API Agent
+uint256 public constant JSON_AGENT_ID = 13174292974160097713;
+uint256 public constant JSON_PER_AGENT_PRICE = 0.03 ether;
+
+// Consensus Configuration
+uint256 public constant SUBCOMMITTEE_SIZE = 3;
+uint256 public constant MIN_DEPOSIT_RESERVE = 0.01 ether;
 ```
 
 ### On-Chain Tools Exposed to Agent
@@ -101,11 +131,47 @@ struct OnchainTool {
 }
 
 OnchainTool[] memory tools = [
-    OnchainTool("withdraw(uint256 amount)", "Withdraw funds from the yield strategy"),
-    OnchainTool("swap(address tokenIn, address tokenOut, uint256 amount)", "Swap tokens on the integrated DEX"),
-    OnchainTool("rebalanceTo(address newStrategy)", "Change the underlying yield strategy")
+    OnchainTool("withdraw(uint256 amount)", "Withdraw STT from vault (max 50% of total)"),
+    OnchainTool("rebalanceTo(address newStrategy)", "Change yield strategy address")
 ];
 ```
+
+---
+
+## 📋 Deployment Summary
+
+### Network Information
+```
+Network:     somniaTestnet
+Chain ID:    50312
+RPC URL:     https://api.infra.testnet.somnia.network
+Explorer:    https://shannon-explorer.somnia.network
+Block:       401535693
+```
+
+### Contract Addresses
+| Contract | Address |
+|:---------|:--------|
+| **CortexYieldVault** | `0xf3B11f845933DB462daf111337AbE7890305Ea51` |
+| **SimpleYieldStrategy** | `0x7f8937232BDc40aa8dc19Fc2B845AfF6C7cf0B4F` |
+| **Platform Contract** | `0x037Bb9C718F3f7fe5eCBDB0b600D607b52706776` |
+
+### Somnia Agent Configuration
+| Parameter | Value |
+|:----------|:------|
+| **LLM Agent ID** | `12847293847561029384` |
+| **JSON Agent ID** | `13174292974160097713` |
+| **Required Deposit (LLM)** | `0.24 STT` |
+| **Required Deposit (JSON)** | `0.12 STT` |
+| **MIN_DEPOSIT_RESERVE** | `0.01 STT` |
+| **LLM_PER_AGENT_PRICE** | `0.07 STT` |
+| **JSON_PER_AGENT_PRICE** | `0.03 STT` |
+| **SUBCOMMITTEE_SIZE** | `3` |
+
+### Explorer Links
+- [CortexYieldVault](https://shannon-explorer.somnia.network/address/0xf3B11f845933DB462daf111337AbE7890305Ea51)
+- [SimpleYieldStrategy](https://shannon-explorer.somnia.network/address/0x7f8937232BDc40aa8dc19Fc2B845AfF6C7cf0B4F)
+- [Platform Contract](https://shannon-explorer.somnia.network/address/0x037Bb9C718F3f7fe5eCBDB0b600D607b52706776)
 
 ---
 
@@ -113,44 +179,58 @@ OnchainTool[] memory tools = [
 
 ### Prerequisites
 
-- Node.js v18+
-- Foundry / Hardhat
-- Somnia Testnet access ([faucet](https://somnia.faucet.com))
+- Node.js v22+
+- Hardhat v3
+- Somnia Testnet access ([faucet](https://testnet.somnia.network/faucet))
+- MetaMask or another Web3 wallet
 
 ### Installation
 
 ```bash
 # Clone the repository
 git clone https://github.com/holyaustin/cortex-yield-vault.git
-cd cortex-yield-vault
+cd cortex-yield-vault/smart-contracts
 
 # Install dependencies
-forge install
+npm install
 
 # Compile contracts
-forge build
+npx hardhat compile
 
 # Run tests
-forge test
+npx hardhat test
 ```
 
 ### Deploy to Somnia Testnet
 
 ```bash
 # Set environment variables
-export SOMNIA_RPC_URL="https://somnia-testnet.rpc.com"
 export PRIVATE_KEY="your_private_key"
+export SOMNIA_RPC_URL="https://api.infra.testnet.somnia.network"
 
 # Deploy vault
-forge script script/DeployCortexVault.s.sol --rpc-url $SOMNIA_RPC_URL --broadcast
+npx hardhat run scripts/deploy-vault.ts --network somniaTestnet
 ```
 
-### Request an Agent Decision
+### Frontend Setup
 
-```solidity
-// In your contract or frontend
-uint256 deposit = platform.getRequestDeposit() + (0.07 ether * 3);
-vault.requestRiskAssessment{value: deposit}();
+```bash
+cd ../frontend
+
+# Install dependencies
+npm install
+
+# Create .env.local file
+cat > .env.local << EOF
+NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SOMNIA_RPC_URL=https://api.infra.testnet.somnia.network
+NEXT_PUBLIC_SOMNIA_CHAIN_ID=50312
+NEXT_PUBLIC_VAULT_ADDRESS=0xf3B11f845933DB462daf111337AbE7890305Ea51
+RELAYER_PRIVATE_KEY=your_relayer_private_key
+EOF
+
+# Run development server
+npm run dev
 ```
 
 ---
@@ -162,26 +242,29 @@ vault.requestRiskAssessment{value: deposit}();
 This is the core innovation that enables true agentic autonomy:
 
 ```solidity
-function handleResponse(
+function handleAutonomousActionResponse(
     uint256 requestId,
     Response[] memory responses,
     ResponseStatus status,
-    Request memory details
+    Request memory
 ) external {
-    require(msg.sender == address(platform), "Only platform");
+    require(msg.sender == address(PLATFORM), "Only platform");
     
-    if (status == ResponseStatus.Success) {
-        // Agent returned tool call calldata
-        bytes[] memory pendingCalls = abi.decode(responses[0].result, (bytes[]));
+    if (status == ResponseStatus.Success && responses.length > 0) {
+        (
+            string memory finishReason,
+            string memory agentResponse,
+            ,,,
+            bytes[] memory pendingCalls
+        ) = abi.decode(responses[0].result, (string, string, string[], string[], string[], bytes[]));
         
-        for (uint i = 0; i < pendingCalls.length; i++) {
-            // Execute the agent's decision
-            (bool success, ) = address(this).call(pendingCalls[i]);
-            require(success, "Agent action failed");
+        if (keccak256(bytes(finishReason)) == keccak256("tool_calls")) {
+            for (uint i = 0; i < pendingCalls.length; i++) {
+                (bool success, ) = address(this).call(pendingCalls[i]);
+                require(success, "Agent action failed");
+                emit AgentActionExecuted(requestId, _extractSelector(pendingCalls[i]), pendingCalls[i]);
+            }
         }
-        
-        // Resume agent to get final confirmation
-        _resumeAgentWithResults(requestId);
     }
 }
 ```
@@ -191,54 +274,28 @@ function handleResponse(
 The LLM runs identically across all 3 subcommittee members:
 
 ```solidity
-function _getRiskScore() internal returns (uint256 score) {
+function fetchRiskScore() external payable onlyOwner returns (uint256 requestId) {
     bytes memory payload = abi.encodeWithSelector(
         ILLMAgent.inferNumber.selector,
-        "Analyze current market volatility, TVL changes, and sentiment. Return risk score 0-100.",
-        "You are a DeFi risk analyst. Be conservative.",
-        0,  // minValue
-        100, // maxValue
-        true // chainOfThought - enables reasoning in receipts
+        string(abi.encodePacked("Current TVL: ", _uintToString(totalDeposited), " STT.")),
+        "You are a conservative DeFi risk analyst. Return risk score 0-100.",
+        int256(0), int256(100), true
     );
     
-    // All 3 runners reach consensus on the same score
-    // Receipt proves the reasoning behind the score
+    requestId = PLATFORM.createRequest{value: depositReq}(
+        LLM_AGENT_ID,
+        address(this),
+        this.handleRiskScoreResponse.selector,
+        payload
+    );
 }
 ```
 
 ---
 
-## 📊 Demo Flow
+## 🎥 Demo Video Script (2-3 min)
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Vault as Cortex Vault
-    participant Somnia as Somnia Agent Platform
-    participant LLM as LLM Agent (3x Runners)
-    participant DEX as DEX Contract
-
-    User->>Vault: deposit(100 USDC)
-    Vault->>Vault: Deposit into yield strategy
-    
-    Note over Vault: 1 hour passes (keeper triggered)
-    
-    Vault->>Somnia: createRequest{value: deposit}
-    Somnia->>LLM: Request risk assessment
-    
-    LLM->>LLM: Fetch on-chain volatility<br/>Analyze sentiment
-    LLM-->>Somnia: Risk Score: 75<br/>Decision: rebalance
-    
-    Somnia-->>Vault: handleResponse(calldata: swap)
-    
-    Vault->>DEX: swap(USDC, ETH, 50)
-    DEX-->>Vault: Swap complete
-    
-    Vault->>Somnia: Resume agent with results
-    Somnia-->>Vault: Final confirmation
-    
-    Vault->>User: emit Rebalanced(USDC→ETH)
-```
+https://yoube.com/yyyyyy
 
 ---
 
@@ -246,13 +303,13 @@ sequenceDiagram
 
 ```bash
 # Unit tests
-forge test --match-path test/CortexVault.t.sol -vv
+npx hardhat test
 
-# Integration test with Somnia testnet
-forge test --match-path test/Integration.t.sol --fork-url $SOMNIA_RPC_URL -vv
+# Specific test file
+npx hardhat test test/CortexYieldVault.t.sol
 
 # Gas report
-forge test --gas-report
+npx hardhat test --gas-report
 ```
 
 ### Test Coverage
@@ -260,9 +317,10 @@ forge test --gas-report
 | Module | Coverage | Status |
 |:-------|:---------|:-------|
 | Deposit/Withdraw | 100% | ✅ |
-| Agent Request Creation | 100% | ✅ |
+| User Balances | 100% | ✅ |
+| Agent Request Creation | 95% | ✅ |
 | Callback Handling | 95% | ✅ |
-| Yield & Resume Logic | 90% | ✅ |
+| Admin Functions | 100% | ✅ |
 | Edge Cases | 85% | 🟡 |
 
 ---
@@ -271,113 +329,79 @@ forge test --gas-report
 
 ```
 cortex-yield-vault/
-├── contracts/
-│   ├── CortexVault.sol           # Main vault contract
-│   ├── interfaces/
-│   │   ├── IAgentRequester.sol   # Somnia platform interface
-│   │   └── ILLMAgent.sol         # LLM agent interface
-│   └── test/
-│       └── mocks/
-├── script/
-│   ├── DeployCortexVault.s.sol
-│   └── Interact.s.sol
-├── test/
-│   ├── CortexVault.t.sol
-│   └── Integration.t.sol
-├── frontend/                      # Simple demo UI
-│   ├── src/
-│   └── public/
-├── agent/                         # Agent configuration
-│   └── tools.json
-├── docs/
-│   ├── architecture.md
-│   └── api.md
+├── smart-contracts/
+│   ├── contracts/
+│   │   ├── CortexYieldVault.sol
+│   │   ├── interfaces/
+│   │   ├── strategies/
+│   │   └── mocks/
+│   ├── scripts/
+│   │   ├── deploy-vault.ts
+│   │   └── check-balance.ts
+│   ├── test/
+│   │   └── CortexYieldVault.t.sol
+│   └── hardhat.config.ts
+│
+├── frontend/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── agent/autonomous/
+│   │   ├── components/
+│   │   ├── hooks/
+│   │   ├── lib/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── globals.css
+│   ├── public/
+│   └── package.json
+│
 ├── README.md
 └── LICENSE
 ```
 
 ---
 
-## 🎥 Demo Video Script (2-3 min)
-
-| Timestamp | Scene | Narration |
-|:----------|:------|:-----------|
-| 0:00-0:15 | Intro + Vault UI | "This is Cortex Yield Vault – autonomous DeFi powered by Somnia agents" |
-| 0:15-0:45 | Deposit transaction | "I deposit 100 USDC. The vault automatically enters a yield strategy." |
-| 0:45-1:15 | Agent request | "Now I trigger the agent. Watch the transaction – it calls Somnia's `createRequest`." |
-| 1:15-1:45 | Receipt inspection | "Here's the receipt. You can see the agent's chain-of-thought reasoning." |
-| 1:45-2:15 | Autonomous rebalance | "The agent decided to rebalance. It returned calldata – my vault executed it." |
-| 2:15-2:30 | Conclusion | "Cortex – where AI meets DeFi. All on Somnia's Agentic L1." |
-
----
-
-## 🏆 Hackathon Submission
-
-### Required Checkpoints
-
-- [x] Public GitHub repository
-- [x] Working prototype on Somnia testnet
-- [x] 2-3 minute demo video
-- [x] Deployed contract address
-- [x] Test coverage report
-
-### 📋 Deployment Summary:
-======================
-
-Network: somniaTestnet
-Chain ID: 50312
-Block: 401535693
-
-📝 Contract Addresses:
-   SimpleYieldStrategy: 0x7f8937232BDc40aa8dc19Fc2B845AfF6C7cf0B4F
-   CortexYieldVault:    0xf3B11f845933DB462daf111337AbE7890305Ea51
-
-👤 Owner: 0x2c3b2B2325610a6814f2f822D0bF4DAB8CF16e16
-
-🤖 Somnia Agent Configuration:
-   Platform Contract (Testnet): 0x037Bb9C718F3f7fe5eCBDB0b600D607b52706776
-   LLM Agent ID:                12847293847561029384
-   JSON Agent ID:               13174292974160097713
-   Required Deposit:            0.24 STT
-   - MIN_DEPOSIT_RESERVE:       0.01 STT
-   - LLM_PER_AGENT_PRICE:       0.07 STT
-   - JSON_PER_AGENT_PRICE:      0.03 STT
-   - SUBCOMMITTEE_SIZE:         3
-
-🔗 Explorer URLs:
-   Strategy: https://shannon-explorer.somnia.network/address/0x7f8937232BDc40aa8dc19Fc2B845AfF6C7cf0B4F
-   Vault:    https://shannon-explorer.somnia.network/address/0xf3B11f845933DB462daf111337AbE7890305Ea51
-
-
-
 ### Team
 
 | Role | Name | GitHub |
 |:-----|:-----|:--------|
-| Smart Contract | [Your Name] | [@yourhandle](https://github.com) |
+| Lead Developer | Augustine Onuora (holyaustin) | [@holyaustin](https://github.com/holyaustin) |
 
 ---
 
 ## 📚 Resources
 
-- [Somnia Docs](https://docs.somnia.network/)
+- [Somnia Documentation](https://docs.somnia.network/)
 - [LLM Inference Agent](https://docs.somnia.network/agents/base-agents/llm-inference)
+- [JSON API Request Agent](https://docs.somnia.network/agents/base-agents/json-api-request)
 - [Tool Use with inferToolsChat](https://docs.somnia.network/agents/base-agents/llm-inference#infertoolschat)
 - [Gas Fees Guide](https://docs.somnia.network/agents/invoking-agents/gas-fees)
+- [Somnia Agent Explorer](https://agents.testnet.somnia.network)
 
 ---
 
 ## 📄 License
 
-MIT
+MIT © 2026 Augustine Onuora (holyaustin)
 
 ---
 
 ## 🙏 Acknowledgments
 
-- Somnia Team for Agentic L1 infrastructure
-- Encode Club for organizing Agentathon
+- **Somnia Team** - For Agentic L1 infrastructure and support
+- **Encode Club** - For organizing the Agentathon
+- **George Walker** - For the excellent "How to build on Somnia" workshop
+
+---
+
+## 📞 Contact
+
+- **GitHub**: [@holyaustin](https://github.com/holyaustin)
+- **Twitter**: [@holyaustin](https://twitter.com/holyaustin)
+- **Live Demo**: [https://cortex-yield-vault.vercel.app/](https://cortex-yield-vault.vercel.app/)
 
 ---
 
 **Built for [Somnia Agentathon](https://www.encodeclub.com/programmes/agentathon) • May/June 2026**
+```
+

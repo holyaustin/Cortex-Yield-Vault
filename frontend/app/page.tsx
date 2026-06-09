@@ -245,7 +245,13 @@ export default function Home() {
             <ul className="text-sm space-y-2 text-gray-600 dark:text-gray-400">
               <li>• LLM Inference Agent ID: <code className="text-primary">12847293847561029384</code></li>
               <li>• JSON API Agent ID: <code className="text-primary">13174292974160097713</code></li>
-              <li>• Platform Address: <code className="text-primary">0x037Bb9C718F3f7fe5eCBDB0b600D607b52706776</code></li>
+    {/* Platform Address - Mobile friendly with break-all */}
+    <li className="flex flex-col sm:flex-row sm:items-start gap-1">
+      <span className="font-medium min-w-[120px] text-gray-700 dark:text-gray-300">Platform Address:</span>
+      <code className="text-primary text-xs sm:text-sm break-all bg-gray-50 dark:bg-gray-800 px-2 py-1 rounded-md">
+        0x037Bb9C718F3f7fe5eCBDB0b600D607b52706776
+      </code>
+    </li>
               <li>• Required Deposit (LLM): 0.24 STT</li>
               <li>• Required Deposit (JSON): 0.12 STT</li>
             </ul>
