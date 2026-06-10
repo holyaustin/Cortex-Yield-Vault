@@ -1,6 +1,3 @@
-Here's the updated comprehensive README with your information and the missing deployment details:
-
-```markdown
 # 🧠 Cortex Yield Vault
 
 ### *Autonomous Yield Management • AI-Powered Risk Protection • On-Chain Agentic DeFi*
@@ -12,19 +9,19 @@ Here's the updated comprehensive README with your information and the missing de
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Hackathon](https://img.shields.io/badge/Somnia-Agentathon-FF6B35)](https://www.encodeclub.com/programmes/agentathon)
 
----
+
 
 ## 🌐 Live Demo
 
 **[https://cortex-yield-vault.vercel.app/](https://cortex-yield-vault.vercel.app/)**
 
----
+
 
 ## 👨‍💻 Author
 
 **Augustine Onuora (holyaustin)**
 - GitHub: [@holyaustin](https://github.com/holyaustin)
-- Twitter: [@holyaustin](https://twitter.com/holyaustin)
+- X: [@holyaustin](https://x.com/holyaustin)
 
 ---
 
@@ -34,7 +31,7 @@ Here's the updated comprehensive README with your information and the missing de
 
 ### The Core Innovation
 
-```
+
 ┌─────────────────────────────────────────────────────────────────┐
 │                    CORTEX YIELD VAULT FLOW                       │
 ├─────────────────────────────────────────────────────────────────┤
@@ -59,7 +56,7 @@ Here's the updated comprehensive README with your information and the missing de
 │   Complete – Closed-Loop Autonomy                                │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
-```
+
 
 ### Why Somnia?
 
@@ -72,7 +69,6 @@ Traditional oracles only provide **data**. Cortex uses Somnia's unique **agentic
 | **Deterministic LLM** | All subcommittee members reach consensus on decisions |
 | **Receipt Auditability** | Every AI decision is cryptographically verifiable on-chain |
 
----
 
 ## 🎯 Judging Criteria Alignment
 
@@ -83,13 +79,12 @@ Traditional oracles only provide **data**. Cortex uses Somnia's unique **agentic
 | **Innovation** | First implementation of "yield & resume" pattern for DeFi vaults |
 | **Autonomous Performance** | Vault runs continuously without human intervention |
 
----
 
 ## 🏗️ Architecture
 
 ### Smart Contracts
 
-```
+
 contracts/
 ├── CortexYieldVault.sol     # Main vault with agent interaction
 ├── interfaces/
@@ -100,7 +95,7 @@ contracts/
 ├── strategies/
 │   └── SimpleYieldStrategy.sol
 └── mocks/
-```
+
 
 ### Agent Configuration
 
