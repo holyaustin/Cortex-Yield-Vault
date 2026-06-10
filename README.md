@@ -31,7 +31,7 @@
 
 ### The Core Innovation
 
-
+```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    CORTEX YIELD VAULT FLOW                       │
 ├─────────────────────────────────────────────────────────────────┤
@@ -56,7 +56,7 @@
 │   Complete – Closed-Loop Autonomy                                │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
-
+```
 
 ### Why Somnia?
 
@@ -84,7 +84,7 @@ Traditional oracles only provide **data**. Cortex uses Somnia's unique **agentic
 
 ### Smart Contracts
 
-
+```
 contracts/
 ├── CortexYieldVault.sol     # Main vault with agent interaction
 ├── interfaces/
@@ -95,7 +95,7 @@ contracts/
 ├── strategies/
 │   └── SimpleYieldStrategy.sol
 └── mocks/
-
+```
 
 ### Agent Configuration
 
